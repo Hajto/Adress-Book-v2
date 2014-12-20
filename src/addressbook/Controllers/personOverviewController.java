@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+
 public class personOverviewController {
 
     public personOverviewController() {
@@ -54,9 +55,14 @@ public class personOverviewController {
 
     @FXML
     private void editClick(){
-        mainApp.editDialog();
-    }
+        try{
+            mainApp.editDialog();
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
+    }
+    //TODO:Naprawić to bo się psuje
     @FXML
     private void deleteClick() {
         int temp = personsOverview.getSelectionModel().getSelectedIndex();

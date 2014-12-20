@@ -1,6 +1,5 @@
 package addressbook;
 
-import addressbook.Model.Person;
 import addressbook.Utility.refference;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +16,8 @@ public class Main extends Application {
     private BorderPane root;
     private Stage primarStage;
 
+    public Main(){}
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         root = FXMLLoader.load(getClass().getResource(refference.mainFXML));
@@ -28,7 +29,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
     }
 
-    public boolean editDialog(Person person){
+    public boolean editDialog(){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource(refference.editViewFXML));
