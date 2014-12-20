@@ -15,8 +15,7 @@ public class personOverviewController {
     public personOverviewController() {
     }
 
-    Main mainApp;
-
+    Main mainApp = new Main();
     @FXML
     private TableView personsOverview;
     @FXML
@@ -30,6 +29,10 @@ public class personOverviewController {
     private Label lLast;
     @FXML
     private Label lAddress;
+    @FXML
+    private Label lPhone;
+    @FXML
+    private Label lBirth;
 
     private ObservableList<Person> persons = FXCollections.observableArrayList();
 
@@ -38,31 +41,39 @@ public class personOverviewController {
         addDebugData();
         colName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         surCol.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+
     }
 
     @FXML
     private void tableClick() {
         Person holder = (Person) personsOverview.getSelectionModel().getSelectedItem();
+        showDetails(holder);
+    }
+
+    public void showDetails(Person person) {
         try {
-            lName.setText(holder.getFirstName());
-            lLast.setText(holder.getLastName());
-            lAddress.setText(holder.getAddress());
+            lName.setText(person.getFirstName());
+            lLast.setText(person.getLastName());
+            lAddress.setText(person.getAddress());
+            lBirth.setText(person.getBirthday());
+            lPhone.setText(person.getPhone());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
-    private void editClick(){
-        try{
-            mainApp.editDialog();
-        } catch (NullPointerException e){
-            e.printStackTrace();
+    private void editClick() {
+        Person selected = (Person) personsOverview.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            boolean result = mainApp.editDialog(selected);
+            if(result){
+                showDetails(selected);
+            }
         }
 
     }
-    //TODO:Naprawić to bo się psuje
+
     @FXML
     private void deleteClick() {
         int temp = personsOverview.getSelectionModel().getSelectedIndex();

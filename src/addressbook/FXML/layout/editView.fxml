@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="addressbook.Controllers.editViewController">
    <children>
       <GridPane layoutX="22.0" layoutY="14.0" prefHeight="193.0" prefWidth="314.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columnConstraints>
@@ -25,11 +21,11 @@
             <Label text="Last Name" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Label text="Address" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Label text="Birthday" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txFname" GridPane.columnIndex="1" />
+            <TextField fx:id="txLname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txBirth" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txPhone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Phone number" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
          </children>
       </GridPane>
@@ -42,7 +38,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button layoutX="131.0" layoutY="193.0" mnemonicParsing="false" text="Apply" GridPane.halignment="CENTER" />
+            <Button layoutX="131.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleOk" text="Apply" GridPane.halignment="CENTER" />
             <Button layoutX="201.0" layoutY="193.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
       </GridPane>

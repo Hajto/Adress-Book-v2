@@ -1,5 +1,7 @@
 package addressbook;
 
+import addressbook.Controllers.editViewController;
+import addressbook.Model.Person;
 import addressbook.Utility.refference;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +31,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
     }
 
-    public boolean editDialog(){
+    public boolean editDialog(Person person){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource(refference.editViewFXML));
@@ -43,8 +45,14 @@ public class Main extends Application {
             stage.initOwner(primarStage);
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.show();
-            return true;
+
+            editViewController controller = loader.getController();
+            controller.setPerson(person);
+            controller.setStage(stage);
+
+            stage.showAndWait();
+
+            return controller.isOk();
         } catch (IOException e){
             e.printStackTrace();
             return false;

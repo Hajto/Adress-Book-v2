@@ -11,12 +11,14 @@ public class Person {
     private SimpleStringProperty lastName;
     private SimpleStringProperty birthday;
     private SimpleStringProperty address;
+    private SimpleStringProperty phone;
 
     public Person(String name,String surnName){
         this.firstName = new SimpleStringProperty(name);
         this.lastName = new SimpleStringProperty(surnName);
         this.birthday = new SimpleStringProperty("");
         this.address = new SimpleStringProperty("");
+        this.phone = new SimpleStringProperty("");
     }
 
     public String getFirstName() {
@@ -65,5 +67,17 @@ public class Person {
 
     public void setAddress(String address) {
         this.address.set(address);
+    }
+
+    public String getPhone() {
+        return phone.get();
+    }
+
+    public SimpleStringProperty phoneProperty() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone.set(phone);
     }
 }
