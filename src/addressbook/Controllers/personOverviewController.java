@@ -51,34 +51,49 @@ public class personOverviewController {
     }
 
     public void showDetails(Person person) {
-        try {
+        if(person != null) {
             lName.setText(person.getFirstName());
             lLast.setText(person.getLastName());
             lAddress.setText(person.getAddress());
             lBirth.setText(person.getBirthday());
             lPhone.setText(person.getPhone());
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+        } else {
+            lName.setText("");
+            lLast.setText("");
+            lAddress.setText("");
+            lBirth.setText("");
+            lPhone.setText("");
         }
+
     }
 
     @FXML
     private void editClick() {
         Person selected = (Person) personsOverview.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            boolean result = mainApp.editDialog(selected);
+            boolean result = mainApp.editDialog(selected,false);
             if(result){
                 showDetails(selected);
             }
         }
-
+    }
+    @FXML
+    private void addClick(){
+        Person newPerson = new Person("","");
+        boolean result = mainApp.editDialog(newPerson,true);
+        if(result){
+            showDetails(newPerson);
+            persons.add(newPerson);
+        }
     }
 
     @FXML
     private void deleteClick() {
         int temp = personsOverview.getSelectionModel().getSelectedIndex();
-        if (temp >= 0)
+        if (temp >= 0) {
             personsOverview.getItems().remove(temp);
+            showDetails(null);
+        }
     }
 
     private void addDebugData() {

@@ -29,9 +29,10 @@ public class Main extends Application {
         primaryStage.show();
         loadPersonOverview();
         primaryStage.setResizable(false);
+
     }
 
-    public boolean editDialog(Person person){
+    public boolean editDialog(Person person,boolean add){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource(refference.editViewFXML));
@@ -40,7 +41,11 @@ public class Main extends Application {
             //Creating entirely new stage
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.setTitle("Edit Person Info");
+            if(add){
+                stage.setTitle("Add Person");
+            } else {
+                stage.setTitle("Edit Person");
+            }
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(primarStage);
             Scene scene = new Scene(root);

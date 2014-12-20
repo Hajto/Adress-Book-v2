@@ -41,7 +41,7 @@ public class editViewController {
     }
 
     @FXML
-    private void handleOk(){
+    private void onOk(){
         person.setFirstName(txFname.getText());
         person.setLastName(txLname.getText());
         person.setAddress(txAddress.getText());
@@ -49,6 +49,11 @@ public class editViewController {
         person.setPhone(txPhone.getText());
 
         okClicked = true;
+        stage.close();
+    }
+
+    @FXML
+    private void onCancel(){
         stage.close();
     }
 

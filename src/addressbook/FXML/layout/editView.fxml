@@ -38,8 +38,8 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button layoutX="131.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleOk" text="Apply" GridPane.halignment="CENTER" />
-            <Button layoutX="201.0" layoutY="193.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button layoutX="131.0" layoutY="193.0" mnemonicParsing="false" onAction="#onOk" text="Apply" GridPane.halignment="CENTER" />
+            <Button layoutX="201.0" layoutY="193.0" onAction="#onCancel" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
    </children>
