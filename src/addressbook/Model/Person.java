@@ -14,12 +14,13 @@ public class Person {
     private SimpleStringProperty phone;
     private Integer Id;
 
-    public Person(String name,String surnName){
-        this.firstName = new SimpleStringProperty(name);
-        this.lastName = new SimpleStringProperty(surnName);
+    public Person(int id){
+        this.firstName = new SimpleStringProperty("");
+        this.lastName = new SimpleStringProperty("");
         this.birthday = new SimpleStringProperty("");
         this.address = new SimpleStringProperty("");
         this.phone = new SimpleStringProperty("");
+        this.Id = id + 1;
     }
     public Person(String name, String surnName, String birthday, String address, String phone, Integer Id){
         this.firstName = new SimpleStringProperty(name);
@@ -88,5 +89,9 @@ public class Person {
 
     public void setPhone(String phone) {
         this.phone.set(phone);
+    }
+
+    public int getId(){
+        return this.Id;
     }
 }

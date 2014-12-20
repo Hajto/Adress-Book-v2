@@ -69,4 +69,26 @@ public class SQLite {
         }
 
     }
+
+    public int getNextId(){
+        String query = "SELECT t.* FROM sqlite_sequence t";
+        try {
+            ResultSet rs = stat.executeQuery(query);
+            String debug = rs.getString("seq");
+            return Integer.parseInt(debug);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public void deletePerson(String Id){
+        try {
+            PreparedStatement query = conn.prepareStatement("DELETE FROM persons WHERE Id=?");
+            query.setString(1,Id);
+            query.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
