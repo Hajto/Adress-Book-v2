@@ -17,7 +17,7 @@ public class personOverviewController {
 
     Main mainApp = new Main();
     @FXML
-    private TableView personsOverview;
+    private TableView<Person> personsOverview;
     @FXML
     private TableColumn<Person, String> colName;
     @FXML
@@ -49,18 +49,22 @@ public class personOverviewController {
     }
     @FXML
     private void tableClick() {
-        Person holder = (Person) personsOverview.getSelectionModel().getSelectedItem();
+        Person holder = personsOverview.getSelectionModel().getSelectedItem();
         showDetails(holder);
         //TODO: Wywalic ponizsze, bo tylko debug
         System.out.println(holder.getId());
     }
     @FXML
     private void editClick() {
-        Person selected = (Person) personsOverview.getSelectionModel().getSelectedItem();
+        Person selected = personsOverview.getSelectionModel().getSelectedItem();
         if (selected != null) {
             boolean result = mainApp.editDialog(selected,false);
             if(result){
                 showDetails(selected);
+
+                String temp = "firstName='"+selected.getFirstName()+"', lastName='"+selected.getLastName() + "', address='"+selected.getAddress() + "', phone='"+selected.getPhone() + "', birthday='"+selected.getBirthday()+"'";
+                System.out.println(temp);
+                sql.sendEdit(temp,Integer.toString(selected.getId()));
             }
         }
     }
@@ -78,16 +82,13 @@ public class personOverviewController {
     private void deleteClick() {
         int temp = personsOverview.getSelectionModel().getSelectedIndex();
         if (temp >= 0) {
-            Person tp = (Person) personsOverview.getSelectionModel().getSelectedItem();
+            Person tp = personsOverview.getSelectionModel().getSelectedItem();
             personsOverview.getItems().remove(temp);
             sql.deletePerson(Integer.toString(tp.getId()));
             showDetails(null);
         }
     }
 
-    public void appendPerson(Person person){
-        persons.add(person);
-    }
     public void showDetails(Person person) {
         if(person != null) {
             lName.setText(person.getFirstName());

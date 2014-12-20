@@ -91,4 +91,13 @@ public class SQLite {
             e.printStackTrace();
         }
     }
+
+    public void sendEdit(String updated, String Id){
+        try {
+            PreparedStatement query = conn.prepareStatement("UPDATE persons SET "+updated + "where Id="+Id);
+            query.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
