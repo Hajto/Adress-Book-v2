@@ -2,7 +2,7 @@ package addressbook.Controllers;
 
 import addressbook.Main;
 import addressbook.Model.Person;
-import javafx.collections.FXCollections;
+import addressbook.SQL.SQLite;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -34,14 +34,18 @@ public class personOverviewController {
     @FXML
     private Label lBirth;
 
-    private ObservableList<Person> persons = FXCollections.observableArrayList();
+    private ObservableList<Person> persons;
+    SQLite sql;
+
 
     @FXML
     private void initialize() {
-        addDebugData();
         colName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         surCol.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
 
+        sql = new SQLite();
+        persons = sql.selectAll();
+        personsOverview.setItems(persons);
     }
 
     @FXML
@@ -84,6 +88,7 @@ public class personOverviewController {
         if(result){
             showDetails(newPerson);
             persons.add(newPerson);
+            sql.addToPersons(newPerson);
         }
     }
 
@@ -104,9 +109,15 @@ public class personOverviewController {
         persons.add(new Person("Kasia", "Debugerka"));
     }
 
+    public void appendPerson(Person person){
+        persons.add(person);
+    }
+
     @FXML
     private void debug() {
-        personsOverview.setItems(persons);
+
+
     }
+
 }
 

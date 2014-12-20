@@ -12,6 +12,7 @@ public class Person {
     private SimpleStringProperty birthday;
     private SimpleStringProperty address;
     private SimpleStringProperty phone;
+    private Integer Id;
 
     public Person(String name,String surnName){
         this.firstName = new SimpleStringProperty(name);
@@ -19,6 +20,14 @@ public class Person {
         this.birthday = new SimpleStringProperty("");
         this.address = new SimpleStringProperty("");
         this.phone = new SimpleStringProperty("");
+    }
+    public Person(String name, String surnName, String birthday, String address, String phone, Integer Id){
+        this.firstName = new SimpleStringProperty(name);
+        this.lastName = new SimpleStringProperty(surnName);
+        this.birthday = new SimpleStringProperty(birthday);
+        this.address = new SimpleStringProperty(address);
+        this.phone = new SimpleStringProperty(phone);
+        this.Id = Id;
     }
 
     public String getFirstName() {

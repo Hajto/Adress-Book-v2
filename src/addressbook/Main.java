@@ -2,7 +2,7 @@ package addressbook;
 
 import addressbook.Controllers.editViewController;
 import addressbook.Model.Person;
-import addressbook.Utility.refference;
+import addressbook.Utility.Refference;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,20 +22,19 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        root = FXMLLoader.load(getClass().getResource(refference.mainFXML));
+        root = FXMLLoader.load(getClass().getResource(Refference.mainFXML));
         primarStage = primaryStage;
         primaryStage.setTitle("Fancy Address Book");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
         loadPersonOverview();
         primaryStage.setResizable(false);
-
     }
 
     public boolean editDialog(Person person,boolean add){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource(refference.editViewFXML));
+            loader.setLocation(Main.class.getResource(Refference.editViewFXML));
             AnchorPane root = loader.load();
 
             //Creating entirely new stage
@@ -68,7 +67,7 @@ public class Main extends Application {
     private void loadPersonOverview(){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource(refference.personOverviewFXML));
+            loader.setLocation(Main.class.getResource(Refference.personOverviewFXML));
             AnchorPane overview = loader.load();
             root.setCenter(overview);
 
