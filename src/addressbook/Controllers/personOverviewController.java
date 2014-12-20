@@ -9,16 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-import java.lang.reflect.InvocationTargetException;
-
-
-/**
- * Created by Hajto-Lenovo on 2014-12-19.
- */
 public class personOverviewController {
 
     public personOverviewController() {
     }
+
+    Main mainApp;
 
     @FXML
     private TableView personsOverview;
@@ -58,7 +54,7 @@ public class personOverviewController {
 
     @FXML
     private void editClick(){
-        
+        mainApp.editDialog();
     }
 
     @FXML
