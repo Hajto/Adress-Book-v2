@@ -29,13 +29,16 @@ public class SQLite {
         tryCreateTables();
     }
 
-    private void tryCreateTables(){
-        String createQuery = "CREATE TABLE IF NOT EXISTS persons (Id INTEGER PRIMARY KEY AUTOINCREMENT, firstName VARCHAR(64), lastName VARCHAR(64), address VARCHAR(64), phone VARCHAR(24), birthday VARCHAR(24))";
+
+    public int getNextId(){
+        String query = "SELECT t.* FROM sqlite_sequence t";
         try {
-            stat.execute(createQuery);
-            System.out.println("Table ready");
-        }catch (SQLException e){
+            ResultSet rs = stat.executeQuery(query);
+            String debug = rs.getString("seq");
+            return Integer.parseInt(debug);
+        } catch (SQLException e) {
             e.printStackTrace();
+            return 0;
         }
     }
 
@@ -55,6 +58,15 @@ public class SQLite {
         }
     }
 
+    private void tryCreateTables(){
+        String createQuery = "CREATE TABLE IF NOT EXISTS persons (Id INTEGER PRIMARY KEY AUTOINCREMENT, firstName VARCHAR(64), lastName VARCHAR(64), address VARCHAR(64), phone VARCHAR(24), birthday VARCHAR(24))";
+        try {
+            stat.execute(createQuery);
+            System.out.println("Table ready");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     public void addToPersons(Person person){
         try {
             PreparedStatement insertQuery = conn.prepareStatement("INSERT INTO persons (firstName,lastName,address,phone,birthday) VALUES(?,?,?,?,?)");
@@ -69,19 +81,6 @@ public class SQLite {
         }
 
     }
-
-    public int getNextId(){
-        String query = "SELECT t.* FROM sqlite_sequence t";
-        try {
-            ResultSet rs = stat.executeQuery(query);
-            String debug = rs.getString("seq");
-            return Integer.parseInt(debug);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
     public void deletePerson(String Id){
         try {
             PreparedStatement query = conn.prepareStatement("DELETE FROM persons WHERE Id=?");
@@ -91,7 +90,6 @@ public class SQLite {
             e.printStackTrace();
         }
     }
-
     public void sendEdit(String updated, String Id){
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE persons SET "+updated + "where Id="+Id);

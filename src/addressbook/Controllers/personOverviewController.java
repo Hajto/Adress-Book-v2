@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 public class personOverviewController {
 
     public personOverviewController() {
+        //Co to za klasa bez konstruktora :D
     }
 
     Main mainApp = new Main();
@@ -73,7 +74,6 @@ public class personOverviewController {
         Person newPerson = new Person(sql.getNextId());
         boolean result = mainApp.editDialog(newPerson,true);
         if(result){
-            showDetails(newPerson);
             persons.add(newPerson);
             sql.addToPersons(newPerson);
         }
