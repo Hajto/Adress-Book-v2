@@ -10,13 +10,19 @@ public class Person {
     private SimpleStringProperty address;
     private SimpleStringProperty phone;
     private Integer Id;
+    private static int previousId=0;
+
+    public Person(){
+        this(null,null,null,null,null,previousId+1);
+        previousId++;
+    }
 
     //For creating new user from form
     public Person(int id){
         this("","","","","",id+1);
     }
     //Creating new person from Database for viewing
-    public Person(String name, String surnName, String birthday, String address, String phone, Integer Id){
+    public Person(String name, String surnName, String address, String phone, String birthday, Integer Id){
         this.firstName = new SimpleStringProperty(name);
         this.lastName = new SimpleStringProperty(surnName);
         this.birthday = new SimpleStringProperty(birthday);

@@ -21,12 +21,12 @@
             <Label text="Last Name" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Label text="Address" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Label text="Birthday" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label text="Phone number" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <TextField fx:id="txFname" GridPane.columnIndex="1" />
             <TextField fx:id="txLname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txBirth" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txPhone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="Phone number" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <GridPane layoutX="90.0" layoutY="216.0" prefHeight="25.0" prefWidth="135.0">
@@ -39,7 +39,7 @@
          </rowConstraints>
          <children>
             <Button layoutX="131.0" layoutY="193.0" mnemonicParsing="false" onAction="#onOk" text="Apply" GridPane.halignment="CENTER" />
-            <Button layoutX="201.0" layoutY="193.0" onAction="#onCancel" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button layoutX="201.0" layoutY="193.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" text="Cancel" onAction="#onCancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
    </children>

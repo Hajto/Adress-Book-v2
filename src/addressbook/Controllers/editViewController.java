@@ -14,9 +14,10 @@ public class editViewController {
     @FXML
     private TextField txAddress;
     @FXML
-    private TextField txPhone;
-    @FXML
     private TextField txBirth;
+    @FXML
+    private TextField txPhone;
+
 
     private Person person;
     private Stage stage;
@@ -52,7 +53,7 @@ public class editViewController {
         txFname.setText(person.getFirstName());
         txLname.setText(person.getLastName());
         txAddress.setText(person.getAddress());
-        txBirth.setText(person.getAddress());
+        txBirth.setText(person.getBirthday());
         txPhone.setText(person.getPhone());
     }
     public void setStage(Stage stage) {

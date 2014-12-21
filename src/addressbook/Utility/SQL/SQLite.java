@@ -1,7 +1,7 @@
-package addressbook.SQL;
+package addressbook.Utility.SQL;
 
 import addressbook.Model.Person;
-import addressbook.Utility.Refference;
+import addressbook.Utility.Refference.dbRefference;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,14 +14,14 @@ public class SQLite {
 
     public SQLite(){
         try{
-            Class.forName(Refference.sqliteDriver);
+            Class.forName(dbRefference.sqliteDriver);
             System.out.println("Connection ready");
         } catch (ClassNotFoundException e){
             e.printStackTrace();
         }
 
         try{
-            conn = DriverManager.getConnection(Refference.dbUrl);
+            conn = DriverManager.getConnection(dbRefference.dbUrl);
             stat = conn.createStatement();
         } catch (SQLException e){
             e.printStackTrace();

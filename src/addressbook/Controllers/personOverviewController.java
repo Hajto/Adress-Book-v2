@@ -2,12 +2,14 @@ package addressbook.Controllers;
 
 import addressbook.Main;
 import addressbook.Model.Person;
-import addressbook.SQL.SQLite;
+import addressbook.Utility.SQL.SQLite;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.util.List;
 
 
 public class personOverviewController {
@@ -16,7 +18,7 @@ public class personOverviewController {
         //Co to za klasa bez konstruktora :D
     }
 
-    Main mainApp = new Main();
+    Main mainApp;
     @FXML
     private TableView<Person> personsOverview;
     @FXML
@@ -50,10 +52,10 @@ public class personOverviewController {
     }
     @FXML
     private void tableClick() {
-        Person holder = personsOverview.getSelectionModel().getSelectedItem();
-        showDetails(holder);
-        //TODO: Wywalic ponizsze, bo tylko debug
-        System.out.println(holder.getId());
+        if(personsOverview.getSelectionModel().getSelectedIndex() >= 0) {
+            Person holder = personsOverview.getSelectionModel().getSelectedItem();
+            showDetails(holder);
+        }
     }
     @FXML
     private void editClick() {
@@ -89,6 +91,15 @@ public class personOverviewController {
         }
     }
 
+    public ObservableList<Person> getPersons(){
+        return persons;
+    }
+    public void setPersons(List<Person> persons){
+        //TODO: SQL DROP, Create, insert new records
+        this.persons.clear();
+        this.persons.addAll(persons);
+    }
+
     public void showDetails(Person person) {
         if(person != null) {
             lName.setText(person.getFirstName());
@@ -104,6 +115,9 @@ public class personOverviewController {
             lPhone.setText("");
         }
 
+    }
+    public void setMainApp(Main mainApp){
+        this.mainApp = mainApp;
     }
 
 }
