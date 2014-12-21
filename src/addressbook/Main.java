@@ -21,6 +21,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 public class Main extends Application {
 
@@ -127,6 +128,7 @@ public class Main extends Application {
 
             // Marshalling and saving XML to the file.
             m.marshal(wrapper, file);
+            setPreferedFilePath(file);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,8 +143,31 @@ public class Main extends Application {
             List<Person> debug = personBuilder.getPersons();
             System.out.println(debug.get(0).getId());
             personController.setPersons(personBuilder.getPersons());
+            setPreferedFilePath(file);
         } catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void setPreferedFilePath(File file){
+        Preferences pref = Preferences.systemNodeForPackage(Main.class);
+        if(file != null){
+            primarStage.setTitle("File - "+file.getName());
+            pref.put("preferedFilePath",file.getPath());
+        } else {
+            //Return the shit to defaults
+            pref.remove("preferedFilePath");
+            primarStage.setTitle("Fancy Address Book");
+        }
+    }
+
+    public File getPreferedFilePath(){
+        Preferences pref = Preferences.systemNodeForPackage(Main.class);
+        String path = pref.get("preferedFilePath",null);
+        if(path != ""){
+            return new File(path);
+        } else {
+            return null;
         }
     }
 }

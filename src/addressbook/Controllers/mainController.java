@@ -18,8 +18,16 @@ public class mainController {
         System.out.println("Debug");
     }
 
+
     @FXML
     public void onSave() {
+        File temp = mainApp.getPreferedFilePath();
+        if (temp != null)
+            mainApp.saveDataToFile(temp);
+    }
+
+    @FXML
+    public void onSaveAs() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -31,17 +39,21 @@ public class mainController {
         mainApp.saveDataToFile(file);
     }
     @FXML
-    public void onRead(){
+    public void onRead() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("XML files (*.xml)","*.xml");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         fileChooser.getExtensionFilters().add(extensionFilter);
 
         File file = fileChooser.showOpenDialog(mainApp.getPrimarStage());
 
         mainApp.readDataFromFile(file);
     }
+    @FXML
+    public void onClose(){
+        System.exit(0);
+    }
 
-    public void setMainApp(Main app){
+    public void setMainApp(Main app) {
         this.mainApp = app;
     }
 
