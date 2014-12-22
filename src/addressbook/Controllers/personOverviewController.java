@@ -96,6 +96,7 @@ public class personOverviewController {
     }
     public void setPersons(List<Person> persons){
         //TODO: SQL DROP, Create, insert new records
+        sql.repopulateTable(persons);
         this.persons.clear();
         this.persons.addAll(persons);
     }

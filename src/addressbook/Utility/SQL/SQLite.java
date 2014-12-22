@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.List;
 
 public class SQLite {
 
@@ -58,6 +59,13 @@ public class SQLite {
         }
     }
 
+    private void dropTheTable(){
+        try {
+            conn.prepareStatement("Drop TABLE persons").execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     private void tryCreateTables(){
         String createQuery = "CREATE TABLE IF NOT EXISTS persons (Id INTEGER PRIMARY KEY AUTOINCREMENT, firstName VARCHAR(64), lastName VARCHAR(64), address VARCHAR(64), phone VARCHAR(24), birthday VARCHAR(24))";
         try {
@@ -98,4 +106,12 @@ public class SQLite {
             e.printStackTrace();
         }
     }
+    public void repopulateTable(List<Person> list){
+        dropTheTable();
+        tryCreateTables();
+        for(Person x:list){
+            addToPersons(x);
+        }
+    }
+
 }
